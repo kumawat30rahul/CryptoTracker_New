@@ -49,14 +49,14 @@ export default function CoinNavgationTabs({coins}) {
         <TabPanel value="grid" className='tabpanel_div'>
             <div className='grid_flex_tabpanel'>
                 {coins && coins.map((coin,index)=>{
-                    return <Grid coin={coin} key={index}/>
+                    return <Grid coin={coin} key={index} delay={(index + 6) % 6}/>
                 })}
             </div>
         </TabPanel>
         <TabPanel value="list">
             <div className='list_tabpanel'>
                 {coins && coins.map((coin,index)=>{
-                    return <List coin={coin} key={index} />
+                    return <List coin={coin} key={index} delay={(index + 4) % 4} />
                 })}
             </div>
         </TabPanel>

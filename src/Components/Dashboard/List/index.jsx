@@ -6,14 +6,21 @@ import { Tooltip } from "@mui/material";
 // import { convertNumber } from "../../../functions/convertNumbers";
 import { Link } from "react-router-dom";
 import millify from 'millify'
+import {motion} from 'framer-motion'
 
-function List({ coin }) {
+
+function List({ coin , delay}) {
   useEffect(()=>{
     console.log(coin);
   })
   return (
     <Link to={`/coin/${coin.id}`} className="router_link">
-      <tr className="list-row">
+      <motion.tr 
+      initial={{opacity:0,x:-30}}
+      whileInView={{opacity:1,x:0}}
+      viewport={{once: true}}
+      transition={{duration:0.5, delay: 0.25 + delay *0.1}}
+      className="list-row">
         <Tooltip title={coin.name + " logo"}>
           <td className="td-image">
             <img src={coin.image} className="coin-logo td-text" />
@@ -84,7 +91,7 @@ function List({ coin }) {
             </p>
           </td>
         </Tooltip>
-      </tr>
+      </motion.tr>
     </Link>
   );
 }

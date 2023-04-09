@@ -4,11 +4,16 @@ import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { Link } from "react-router-dom";
 import millify from "millify";
+import {motion} from 'framer-motion'
 
-function Grid({ coin }) {
+function Grid({ coin,delay}) {
   return (
     <Link to={`/coin/${coin.id}`} className="router_link">
-      <div
+      <motion.div
+      initial={{opacity:0,y:30}}
+      whileInView={{opacity:1,y:0}}
+      viewport={{once: true}}
+      transition={{duration:0.5, delay: 0.25 + delay *0.1}}
         className={`grid-container ${
           coin.price_change_percentage_24h < 0 && "grid-container-red"
         }`}
@@ -58,7 +63,7 @@ function Grid({ coin }) {
             Market Cap : ${millify(coin.market_cap)}
           </p>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 }

@@ -11,7 +11,6 @@ import LineChart from "../Components/Coin/LineChart";
 import List from '../Components/Dashboard/List'
 import {coinObject} from '../DataFetching/chartData/convertObject'
 import Loader from '../Components/Common/Loader'
-import {motion} from 'framer-motion'
 
 function Compare() {
     const [crypto1, setCrypto1] = useState("bitcoin");
@@ -100,24 +99,12 @@ function Compare() {
           </div>
           <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
            {crypto1 && crypto1Data && 
-             <motion.div
-             initial={{x:-150,opacity:0.2}}
-             animate={{x:0,opacity:1}}
-             transition={{duration:0.3,delay:0.8}}
-             >
-             <List coin={crypto1Data} />
-             </motion.div>
+             <List coin={crypto1Data}/>
            }
           </div>
           <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
            {crypto2 && crypto2Data && 
-             <motion.div
-             initial={{x:-150,opacity:0.2}}
-             animate={{x:0,opacity:1}}
-             transition={{duration:0.3,delay:1.1}}
-             >
-             <List coin={crypto2Data} />
-             </motion.div>
+             <List coin={crypto2Data} delay={2}/>
             }
           </div>
           <div className="grey-wrapper">
