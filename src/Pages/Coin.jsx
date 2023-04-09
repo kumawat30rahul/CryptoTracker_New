@@ -41,27 +41,27 @@ function Coin() {
         }
     }
     const handleDaysChange = async (event) => {
-        setIsLoading(true);
         setDays(event.target.value);
         const prices = await getCoinPrices(id, event.target.value, priceType);
         if (prices.length > 0) {
             settingChartData(setChartData, prices);
-            setIsLoading(false);
         }
     };
 
     const handlePriceTypeChange = async (event, newType) => {
-        setIsLoading(true);
         setPriceType(newType);
         const prices = await getCoinPrices(id, days, newType);
         if (prices.length > 0) {
             settingChartData(setChartData, prices);
-            setIsLoading(false);
         }
     };
     return (
         <div>
             <Header />
+                    {isLoading ? (
+                        <Loader />
+                    ) : (
+                        <>
                 <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
                     {coin_Data && <List coin={coin_Data} className="coin_list" />}
                 </div>
@@ -71,15 +71,11 @@ function Coin() {
                     priceType={priceType}
                     handlePriceTypeChange={handlePriceTypeChange}
                 />
-                    {isLoading ? (
-                        <Loader />
-                    ) : (
-                        <>
                         <LineChart chartData={chartData} priceType={priceType} multiAxis={false}/>
-                        </>
-                    )}
                 </div>
                 {coin_Data && <CoinInfo heading={coin_Data.name} desc={coin_Data.desc} />}
+                        </>
+                    )}
         </div>
     )
 }

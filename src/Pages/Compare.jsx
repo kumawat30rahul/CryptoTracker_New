@@ -24,21 +24,17 @@ function Compare() {
     const [chartData, setChartData] = useState({});
 
     async function handleDaysChange(event) {
-        setIsLoading(true);
         setDays(event.target.value);
         const prices1 = await getCoinPrices(crypto1, event.target.value, priceType);
         const prices2 = await getCoinPrices(crypto2, event.target.value, priceType);
         settingChartData(setChartData, prices1, prices2);
-        setIsLoading(false);
       }
     
       const handlePriceTypeChange = async (event, newType) => {
-        setIsLoading(true);
         setPriceType(newType);
         const prices1 = await getCoinPrices(crypto1, days, newType);
         const prices2 = await getCoinPrices(crypto2, days, newType);
         settingChartData(setChartData, prices1, prices2);
-        setIsLoading(false);
       };
 
     useEffect(()=>{
@@ -62,7 +58,6 @@ function Compare() {
       }
 
       const handleCoinChange = async (event, isCoin2) => {
-        setIsLoading(true);
         if (isCoin2) {
           setCrypto2(event.target.value);
           const data = await coinData(event.target.value);
@@ -70,7 +65,6 @@ function Compare() {
           const prices1 = await getCoinPrices(crypto1, days, priceType);
           const prices2 = await getCoinPrices(crypto2, days, priceType);
           if (prices1.length > 0 && prices2.length > 0) {
-            setIsLoading(false);
           }
         } else {
           setCrypto1(event.target.value);
@@ -79,7 +73,6 @@ function Compare() {
           const prices1 = await getCoinPrices(crypto1, days, priceType);
           const prices2 = await getCoinPrices(crypto2, days, priceType);
           if (prices1.length > 0 && prices2.length > 0) {
-            setIsLoading(false);
           }
         }
       };
@@ -108,9 +101,9 @@ function Compare() {
           <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
            {crypto1 && crypto1Data && 
              <motion.div
-             initial={{x:-20}}
-             animate={{x:0}}
-             transition={{duration:0.3}}
+             initial={{x:-150,opacity:0.2}}
+             animate={{x:0,opacity:1}}
+             transition={{duration:0.3,delay:0.8}}
              >
              <List coin={crypto1Data} />
              </motion.div>
@@ -119,9 +112,9 @@ function Compare() {
           <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
            {crypto2 && crypto2Data && 
              <motion.div
-             initial={{x:-20}}
-             animate={{x:0}}
-             transition={{duration:0.3,delay:0.3}}
+             initial={{x:-150,opacity:0.2}}
+             animate={{x:0,opacity:1}}
+             transition={{duration:0.3,delay:1.1}}
              >
              <List coin={crypto2Data} />
              </motion.div>
