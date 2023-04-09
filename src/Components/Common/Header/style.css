@@ -1,0 +1,57 @@
+.navbar{
+    position: sticky;
+    top: 0;
+    padding: 1.5rem 3rem;
+    background-color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.router_link{
+    text-decoration: none;
+}
+.nav_links{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+.link {
+    color: var(--grey);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .link:hover {
+    color: var(--white);
+    transition: all 0.3s;
+  }
+  .mobile-sidebar{
+    display: none;
+  }
+
+  @media only screen and (max-width: 800px) {
+    .navbar {
+      padding: 1.5rem;
+    }
+  
+    .logo {
+      font-size: 1rem;
+    }
+  
+    .nav_links {
+      display: none;
+    }
+    .mobile-sidebar {
+      display: block;
+    }
+    .link{
+        padding: 0.5rem 0;
+    }
+  
+    .drawer-div {
+      width: 35vw;
+      background-color: var(--black);
+      height: 100vh;
+      padding: 1.5rem;
+    }
+  }

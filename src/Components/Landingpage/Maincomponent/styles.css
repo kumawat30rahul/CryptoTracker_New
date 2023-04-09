@@ -1,0 +1,155 @@
+.trackcrypto_heading{
+    color: white;
+}
+
+.main_info_flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem 3rem;
+}
+.trackcrypto_heading,
+.realtime_heading {
+  font-size: 7.5rem;
+  margin: 0;
+}
+
+.trackcrypto_heading{
+    color: var(--white);
+  line-height: 8rem;
+
+}
+.trackcrypto_heading:hover{
+    text-shadow: 1px 1px 0 var(--white), -1px -1px 0 var(--white), 1px -1px 0 var(--white), -1px 1px 0 var(--white);
+    color: var(--black);
+    transition: all 0.3s;
+}
+
+.realtime_heading{
+    color: var(--blue);
+}
+
+.description_p{
+    color: var(--grey);
+}
+.buttonflex_div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.right_info {
+    width: 50%;
+    position: relative;
+    padding: 1rem;
+}
+.iphone{
+    position: absolute;
+    z-index: 100;
+    min-width: 300px;
+    width: 50%;
+    right: 6rem;
+}
+.gradient{
+    position: absolute;
+    min-width: 250px;
+    width: 40%;
+    top: 7rem;
+    right: 6rem;
+}
+
+@media only screen and (max-width: 1250px) {
+    .trackcrypto_heading,.realtime_heading {
+        font-size: 5.5rem;
+        margin: 0;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+
+    .main_info_flex{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .trackcrypto_heading,.realtime_heading {
+        line-height: 5rem;
+        text-align: center;
+        font-size: 4.5rem;
+        margin: 0;
+    }
+    .iphone {
+      min-width: 250px;
+      width: 50%;
+      right: 0rem;
+      left: 2rem;
+    }
+  
+    .gradient {
+      min-width: 200px;
+      top: 6rem;
+      right: 0rem;
+      left: 05rem;
+    }
+    .buttonflex_div{
+        margin-top: 1.5rem;
+        justify-content: center;
+    }
+
+    .right_info{
+        margin-top: 4rem;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+
+    .trackcrypto_heading,.realtime_heading {
+        font-size: 3rem;
+        line-height: 4rem;
+    }
+    .iphone {
+      left: -1rem;
+    }
+  
+    .gradient {
+      left: 1rem;
+    }
+
+    .description_p{
+        text-align: center;
+        font-size: 0.8rem;
+    }
+}
+@media only screen and (max-width: 425px) {
+
+    .trackcrypto_heading,.realtime_heading {
+        font-size: 3rem;
+        line-height: 4rem;
+    }
+    .iphone {
+        min-width: 200px;
+      width: 50%;
+      left: 0rem;
+    }
+  
+    .gradient {
+        min-width: 150px;
+
+      left: 2rem;
+    }
+
+    .description_p{
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    .buttonflex_div{
+        gap: 1rem;
+    }
+}
+@media only screen and (max-width: 375px) {
+
+    .description_p{
+        font-size: 0.7rem;
+    }
+}

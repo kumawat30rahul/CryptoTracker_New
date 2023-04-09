@@ -1,0 +1,32 @@
+.coins-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0rem 1.5rem;
+  }
+
+  .coins-days-flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 600px){
+    .p{
+        font-size: 0.8rem;
+    }
+    .coins-flex{
+        /* flex-direction: column; */
+        align-items: flex-start;
+        height: 50px;
+        gap: 0.5rem;
+    }
+    .coins-days-flex{
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+
+      }
+  }
