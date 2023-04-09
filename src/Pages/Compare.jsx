@@ -11,6 +11,7 @@ import LineChart from "../Components/Coin/LineChart";
 import List from '../Components/Dashboard/List'
 import {coinObject} from '../DataFetching/chartData/convertObject'
 import Loader from '../Components/Common/Loader'
+import {motion} from 'framer-motion'
 
 function Compare() {
     const [crypto1, setCrypto1] = useState("bitcoin");
@@ -43,6 +44,7 @@ function Compare() {
     useEffect(()=>{
         getData()
     },[])
+
     async function getData() {
         setIsLoading(true);
         const data1 = await coinData(crypto1);
@@ -74,15 +76,23 @@ function Compare() {
           setCrypto1(event.target.value);
           const data = await coinData(event.target.value);
           coinObject(setCrypto1Data, data);
+          const prices1 = await getCoinPrices(crypto1, days, priceType);
+          const prices2 = await getCoinPrices(crypto2, days, priceType);
+          if (prices1.length > 0 && prices2.length > 0) {
+            setIsLoading(false);
+          }
         }
       };
+      useEffect(()=>{
+        console.log(crypto2Data,crypto1Data)
+      },[crypto2Data,crypto1Data])
   return (
     <div>
       <Header />
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <>
           <div className="coins-days-flex">
             <SelectCoins
               crypto1={crypto1}
@@ -96,26 +106,42 @@ function Compare() {
             />
           </div>
           <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
-            <List coin={crypto1Data} />
+           {crypto1 && crypto1Data && 
+             <motion.div
+             initial={{x:-20}}
+             animate={{x:0}}
+             transition={{duration:0.3}}
+             >
+             <List coin={crypto1Data} />
+             </motion.div>
+           }
           </div>
           <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
-            <List coin={crypto2Data} />
+           {crypto2 && crypto2Data && 
+             <motion.div
+             initial={{x:-20}}
+             animate={{x:0}}
+             transition={{duration:0.3,delay:0.3}}
+             >
+             <List coin={crypto2Data} />
+             </motion.div>
+            }
           </div>
           <div className="grey-wrapper">
             <TogglePriceType
               priceType={priceType}
               handlePriceTypeChange={handlePriceTypeChange}
             />
-            <LineChart
-              chartData={chartData}
-              priceType={priceType}
-              multiAxis={true}
-            />
+                    <LineChart
+                      chartData={chartData}
+                      priceType={priceType}
+                      multiAxis={true}
+                    />
           </div>
-          <CoinInfo heading={crypto1Data.name} desc={crypto1Data.desc} />
-          <CoinInfo heading={crypto2Data.name} desc={crypto2Data.desc} />
-        </>
-      )}
+          {crypto1Data && <CoinInfo heading={crypto1Data.name} desc={crypto1Data.desc} />}
+          {crypto2Data && <CoinInfo heading={crypto2Data.name} desc={crypto2Data.desc} />}
+                </>
+              )}
     </div>
   )
 }

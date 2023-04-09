@@ -62,30 +62,24 @@ function Coin() {
     return (
         <div>
             <Header />
-            {isLoading ? (<Loader />) :
-                (
-                <>
-                    <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
-                        <List coin={coin_Data} className="coin_list" />
-                    </div>
-                    <div className="grey-wrapper">
-                        <SelectDays days={days} handleDaysChange={handleDaysChange} />
-                        <TogglePriceType
-                        priceType={priceType}
-                        handlePriceTypeChange={handlePriceTypeChange}
-                    />
-                        {isLoading ? (
-                            <h1>Loading</h1>
-                        ) : (
-                            <>
-                            <LineChart chartData={chartData} priceType={priceType} multiAxis={false}/>
-                            </>
-                        )}
-                    </div>
-                    <CoinInfo heading={coin_Data.name} desc={coin_Data.desc} />
-                </>
-                )
-            }
+                <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
+                    {coin_Data && <List coin={coin_Data} className="coin_list" />}
+                </div>
+                <div className="grey-wrapper">
+                    <SelectDays days={days} handleDaysChange={handleDaysChange} />
+                    <TogglePriceType
+                    priceType={priceType}
+                    handlePriceTypeChange={handlePriceTypeChange}
+                />
+                    {isLoading ? (
+                        <Loader />
+                    ) : (
+                        <>
+                        <LineChart chartData={chartData} priceType={priceType} multiAxis={false}/>
+                        </>
+                    )}
+                </div>
+                {coin_Data && <CoinInfo heading={coin_Data.name} desc={coin_Data.desc} />}
         </div>
     )
 }
