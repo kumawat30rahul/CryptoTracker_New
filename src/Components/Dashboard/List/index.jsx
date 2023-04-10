@@ -1,26 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { Tooltip } from "@mui/material";
 // import { convertNumber } from "../../../functions/convertNumbers";
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import millify from 'millify'
 import {motion} from 'framer-motion'
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+
 
 
 function List({ coin , delay}) {
+  const [saved,setSaved] = useState(false);
+  const navigate = useNavigate()
+
+  const savingHandler = () => {
+    setSaved(!saved);
+  }
+
   useEffect(()=>{
-    console.log(coin);
-  })
+    console.log(saved);
+  },[saved])
+
+  const handleNavigation = (e) => {
+    console.log(e.target.tagName);
+    console.log(e.target);
+    if(e.target.tagName === "svg" || e.target.tagName === "path" || e.target.tagName === "BUTTON" ){
+      return;
+    }else{
+      navigate(`/coin/${coin.id}`)
+    }
+  }
   return (
-    <Link to={`/coin/${coin.id}`} className="router_link">
+    // <Link to={`/coin/${coin.id}`} className="router_link">
       <motion.tr 
       initial={{opacity:0,x:-30}}
       whileInView={{opacity:1,x:0}}
       viewport={{once: true}}
       transition={{duration:0.5, delay: 0.25 + delay *0.1}}
-      className="list-row">
+      className="list-row"
+      onClick={handleNavigation}
+      >
         <Tooltip title={coin.name + " logo"}>
           <td className="td-image">
             <img src={coin.image} className="coin-logo td-text" />
@@ -91,8 +113,13 @@ function List({ coin , delay}) {
             </p>
           </td>
         </Tooltip>
+        <Tooltip title="Save to Watchlist">
+          <td className="bookmark-td">
+            <button className="bookmark_icon" onClick={savingHandler}>{saved ? <BookmarkIcon className="save_icon"/> : <BookmarkBorderIcon  className="save_icon"/>}</button>
+          </td>
+        </Tooltip>
       </motion.tr>
-    </Link>
+    // </Link>
   );
 }
 

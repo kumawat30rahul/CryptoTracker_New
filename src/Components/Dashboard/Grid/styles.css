@@ -4,6 +4,7 @@
     background-color: var(--darkgrey);
     border: 2px solid var(--darkgrey);
     border-radius: 0.75rem;
+    position: relative;
   }
   
   .grid-container:hover {
@@ -14,6 +15,36 @@
   .grid-container-red:hover {
     border-color: var(--red) !important;
     transition: all 0.3s;
+  }
+  .bookmark-icon{
+    position: absolute;
+    cursor: pointer;
+    top: 30px;
+    right: 20px;
+    z-index: 999;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 10px; */
+    border-radius: 0.5rem;
+    border: none;
+  }
+
+  /* .bookmark-icon:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px var(--gold);
+  } */
+
+  .save-icon{
+    color: var(--gold);
+  }
+
+  .save-icon:hover{
+    transform: scale(1.3);
+    stroke: gold;
+    stroke-width: 1px;
+    transition: all 0.3s linear;
   }
   
   .info-flex {

@@ -9,6 +9,7 @@ import Grid from '../Grid'
 import './styles.css'
 import List from '../List';
 
+
 export default function CoinNavgationTabs({coins}) {
   const [value, setValue] = React.useState('grid');
 
@@ -18,7 +19,7 @@ export default function CoinNavgationTabs({coins}) {
 
    const style = {
     color: "var(--white)",
-    width: "50vw",
+    // width: "20px",
     fontSize: "1.2rem",
     fontWeight: 600,
     fontFamily: "Inter",
@@ -28,20 +29,16 @@ export default function CoinNavgationTabs({coins}) {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#3a80e9",
+        main: "#610094",
       },
     },
   });
 
-  React.useEffect(()=>{
-    console.log(coins);
-  },[])
   return (
     <ThemeProvider theme={theme}>
-    {/* <Box sx={{ width: '100%', typography: 'body1' }}> */}
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example" variant="fullWidth">
+          <TabList onChange={handleChange} aria-label="coin-navigation" className='tablist'>
             <Tab label="Grid" value="grid" sx={style}/>
             <Tab label="List" value="list" sx={style}/>
           </TabList>
@@ -49,7 +46,7 @@ export default function CoinNavgationTabs({coins}) {
         <TabPanel value="grid" className='tabpanel_div'>
             <div className='grid_flex_tabpanel'>
                 {coins && coins.map((coin,index)=>{
-                    return <Grid coin={coin} key={index} delay={(index + 6) % 6}/>
+                    return <Grid coin={coin} key={index} delay={(index + 8) % 8}/>
                 })}
             </div>
         </TabPanel>
@@ -61,7 +58,6 @@ export default function CoinNavgationTabs({coins}) {
             </div>
         </TabPanel>
       </TabContext>
-    {/* </Box> */}
     </ThemeProvider>
   );
 }

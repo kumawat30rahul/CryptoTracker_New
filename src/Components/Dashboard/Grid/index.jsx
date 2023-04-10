@@ -1,23 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import millify from "millify";
 import {motion} from 'framer-motion'
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 function Grid({ coin,delay}) {
+  const [saved,setSaved] = useState(false);
+  const navigate = useNavigate()
+
+  const savingHandler = () => {
+    setSaved(!saved);
+  }
+
+  const handleNavigation = (e) => {
+    console.log(e.target.tagName);
+    console.log(e.target);
+    if(e.target.tagName === "svg" || e.target.tagName === "path" || e.target.tagName === "BUTTON" ){
+      return;
+    }else{
+      navigate(`/coin/${coin.id}`)
+    }
+  }
+
   return (
-    <Link to={`/coin/${coin.id}`} className="router_link">
+    // <Link to={`/coin/${coin.id}`} className="router_link">
       <motion.div
       initial={{opacity:0,y:30}}
       whileInView={{opacity:1,y:0}}
       viewport={{once: true}}
       transition={{duration:0.5, delay: 0.25 + delay *0.1}}
-        className={`grid-container ${
-          coin.price_change_percentage_24h < 0 && "grid-container-red"
-        }`}
+      className={`grid-container ${
+        coin.price_change_percentage_24h < 0 && "grid-container-red"
+      }`}
+      onClick={handleNavigation}
       >
+      <button className="bookmark-icon" onClick={savingHandler}>{saved ? <BookmarkIcon className="save-icon"/> : <BookmarkBorderIcon  className="save-icon"/>}</button>
         <div className="info-flex">
           <img src={coin.image} className="coin-logo" />
           <div className="name-col">
@@ -64,7 +85,7 @@ function Grid({ coin,delay}) {
           </p>
         </div>
       </motion.div>
-    </Link>
+    // </Link>
   );
 }
 

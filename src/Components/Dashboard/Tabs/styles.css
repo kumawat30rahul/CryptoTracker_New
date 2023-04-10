@@ -4,8 +4,14 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: 1rem 3rem;
+    /* padding: 1rem 3rem; */
     width: 100%;
+}
+
+.tablist{
+  position: relative;
+  left: 12vw;
+  width: 250px;
 }
 .tabpanel_div{
     padding: 2rem ;

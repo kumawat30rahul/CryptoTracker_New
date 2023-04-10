@@ -23,7 +23,6 @@ function Header() {
         <Link to="/dashboard" className="router_link">
           <Button
             text={"Dashboard"}
-            onClick={() => console.log("Btn Clicked")}
           />
         </Link>
       </div>
