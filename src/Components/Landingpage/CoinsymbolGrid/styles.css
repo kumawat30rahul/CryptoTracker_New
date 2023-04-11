@@ -1,0 +1,15 @@
+.coin-grid-symbols-div{
+    margin: 10px auto;
+    height: auto;
+    width: 70%;
+    background-color: var(--blue);
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* grid-template-columns: repeat(10,1fr); */
+    padding: 20px;
+    gap: 30px;
+}
+
+
