@@ -35,6 +35,7 @@ function Dashboard() {
 
 
   const fetchData = async ()=>{
+    setIsLoading(true);
     const coins = await coinsFetch();
     if(coins){
         setCoins(coins)
@@ -47,13 +48,17 @@ function Dashboard() {
     <div>
     <Header />
       <Search search={search} onSearchChange={onSearchChange} />
-      <CoinNavgationTabs coins={search ? filteredCoins : paginatedCoins}/>
-      {!search && 
-      <PaginationButtons 
-        page={page}
-        handlePageChange={handlePageChange}
-      />
-      }
+        <CoinNavgationTabs coins={search ? filteredCoins : paginatedCoins} isLoading={isLoading}/>
+        {!isLoading && 
+        <>
+            {!search && 
+            <PaginationButtons 
+              page={page}
+              handlePageChange={handlePageChange}
+            />
+            }
+        </>
+        }
     </div>
   )
 }

@@ -8,9 +8,10 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import Grid from '../Grid'
 import './styles.css'
 import List from '../List';
+import Loader from '../../Common/Loader';
 
 
-export default function CoinNavgationTabs({coins,variant}) {
+export default function CoinNavgationTabs({coins,variant,isLoading}) {
   const [value, setValue] = React.useState('grid');
 
   const handleChange = (event, newValue) => {
@@ -43,7 +44,11 @@ export default function CoinNavgationTabs({coins,variant}) {
             <Tab label="List" value="list" sx={style}/>
           </TabList>
         </Box>
-        <TabPanel value="grid" className='tabpanel_div'>
+        {isLoading ? 
+          <Loader />
+          :
+          <>
+          <TabPanel value="grid" className='tabpanel_div'>
             <div className='grid_flex_tabpanel'>
                 {coins && coins.map((coin,index)=>{
                     return <Grid coin={coin} key={index} delay={(index + 8) % 8}/>
@@ -57,6 +62,9 @@ export default function CoinNavgationTabs({coins,variant}) {
                 })}
             </div>
         </TabPanel>
+          </>
+        }
+        
       </TabContext>
     </ThemeProvider>
   );
