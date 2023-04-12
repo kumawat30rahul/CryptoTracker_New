@@ -25,7 +25,7 @@ function List({ coin , delay}) {
 
   useEffect(()=>{
     const watchlistData = JSON.parse(localStorage.getItem("WATCHLIST"));
-    if(watchlistData.length > 0){
+    if(watchlistData){
         let coinSaved = false; 
         watchlistData.forEach((wcoin)=>{
           if(coin.id === wcoin.id){
