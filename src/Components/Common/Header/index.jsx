@@ -8,7 +8,9 @@ function Header() {
   return (
     <div className="navbar">
       <h1 className="logo">
+      <Link to="/" className="router_link">
         CryptoTracker<span style={{ color: "var(--blue)" }}>.</span>
+      </Link>
       </h1>
       <div className="nav_links">
         <Link to="/" className="router_link">

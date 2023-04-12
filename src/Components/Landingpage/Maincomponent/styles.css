@@ -10,7 +10,7 @@
 }
 .trackcrypto_heading,
 .realtime_heading {
-  font-size: 7.5rem;
+  font-size: 5.5rem;
   margin: 0;
 }
 
@@ -46,9 +46,10 @@
 }
 .iphone{
     position: absolute;
-    z-index: 100;
-    min-width: 300px;
-    width: 50%;
+    z-index: 10;
+    height: 500px !important;
+    /* min-width: auto; */
+    width: auto;
     right: 6rem;
 }
 .gradient{
@@ -81,7 +82,8 @@
     }
     .iphone {
       min-width: 250px;
-      width: 50%;
+      height: auto;
+      /* width: 50%; */
       right: 0rem;
       left: 2rem;
     }
@@ -109,7 +111,9 @@
         line-height: 4rem;
     }
     .iphone {
-      left: -1rem;
+        width: 70%;
+        height: auto !important;
+         left: -2.5rem;
     }
   
     .gradient {
@@ -120,33 +124,11 @@
         text-align: center;
         font-size: 0.8rem;
     }
-}
-@media only screen and (max-width: 425px) {
-
-    .trackcrypto_heading,.realtime_heading {
-        font-size: 3rem;
-        line-height: 4rem;
-    }
-    .iphone {
-        min-width: 200px;
-      width: 50%;
-      left: 0rem;
-    }
-  
-    .gradient {
-        min-width: 150px;
-
-      left: 2rem;
-    }
-
-    .description_p{
-        text-align: center;
-        font-size: 0.8rem;
-    }
     .buttonflex_div{
         gap: 1rem;
     }
 }
+
 @media only screen and (max-width: 375px) {
 
     .description_p{

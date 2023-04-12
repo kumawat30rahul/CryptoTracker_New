@@ -37,15 +37,15 @@ function Home() {
       <div style={circleStyle}></div>
         <Header />
         <Maincomponent />
-        <motion.h1
+        {/* <motion.h1
           className="currency_heading"
           initial={{ opacity: 0,  y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 ,delay: 2}}
         >
           Our Currencies
-        </motion.h1>
-        <CoinGridDiv />
+        </motion.h1> */}
+        {/* <CoinGridDiv /> */}
       </div>
   );
 }

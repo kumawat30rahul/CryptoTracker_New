@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
@@ -7,18 +7,34 @@ import millify from "millify";
 import {motion} from 'framer-motion'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { useDispatch } from 'react-redux';
+import {whishListHandler} from '../../../redux/app/actions'
 
-function Grid({ coin,delay}) {
+function Grid({coin,delay}) {
   const [saved,setSaved] = useState(false);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const savingHandler = () => {
     setSaved(!saved);
   }
 
+  useEffect(()=>{
+    const watchlistData = JSON.parse(localStorage.getItem("WATCHLIST"));
+    if(watchlistData.length > 0){
+        let coinSaved = false; 
+        watchlistData.forEach((wcoin)=>{
+          console.log(wcoin.id);
+          if(coin.id === wcoin.id){
+            coinSaved = true;
+          }
+        })
+        setSaved(coinSaved)
+    }
+  },[coin])
+
   const handleNavigation = (e) => {
-    console.log(e.target.tagName);
-    console.log(e.target);
+    console.log(e);
     if(e.target.tagName === "svg" || e.target.tagName === "path" || e.target.tagName === "BUTTON" ){
       return;
     }else{
@@ -38,7 +54,14 @@ function Grid({ coin,delay}) {
       }`}
       onClick={handleNavigation}
       >
-      <button className="bookmark-icon" onClick={savingHandler}>{saved ? <BookmarkIcon className="save-icon"/> : <BookmarkBorderIcon  className="save-icon"/>}</button>
+      <button className="bookmark-icon" 
+        onClick={(e)=>{
+          savingHandler();
+          whishListHandler(e.target,coin.id,coin,dispatch);
+        }}
+        >
+          {saved ? <BookmarkIcon className="save-icon remove"/> : <BookmarkBorderIcon  className="save-icon add"/>}
+        </button>
         <div className="info-flex">
           <img src={coin.image} className="coin-logo" />
           <div className="name-col">

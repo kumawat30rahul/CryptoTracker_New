@@ -10,7 +10,7 @@ import './styles.css'
 import List from '../List';
 
 
-export default function CoinNavgationTabs({coins}) {
+export default function CoinNavgationTabs({coins,variant}) {
   const [value, setValue] = React.useState('grid');
 
   const handleChange = (event, newValue) => {
@@ -38,7 +38,7 @@ export default function CoinNavgationTabs({coins}) {
     <ThemeProvider theme={theme}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="coin-navigation" className='tablist'>
+          <TabList onChange={handleChange} aria-label="coin-navigation" className='tablist' variant={variant}>
             <Tab label="Grid" value="grid" sx={style}/>
             <Tab label="List" value="list" sx={style}/>
           </TabList>

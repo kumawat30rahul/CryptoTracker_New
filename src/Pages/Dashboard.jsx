@@ -7,6 +7,7 @@ import PaginationButtons from '../Components/Dashboard/Pagination';
 
 function Dashboard() {
   const [coins, setCoins] = useState([]);
+  const [filteredCoins, setFilteredCoins] = useState([]);
   const [paginatedCoins, setPaginatedCoins] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -22,8 +23,16 @@ function Dashboard() {
   }
 
   useEffect(()=>{
+    if(coins){
+      let data = coins.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+      setFilteredCoins(data)
+    }
+  },[search])
+
+  useEffect(()=>{
     fetchData()
   },[])
+
 
   const fetchData = async ()=>{
     const coins = await coinsFetch();
@@ -38,11 +47,13 @@ function Dashboard() {
     <div>
     <Header />
       <Search search={search} onSearchChange={onSearchChange} />
-      <CoinNavgationTabs coins={paginatedCoins}/>
+      <CoinNavgationTabs coins={search ? filteredCoins : paginatedCoins}/>
+      {!search && 
       <PaginationButtons 
         page={page}
         handlePageChange={handlePageChange}
       />
+      }
     </div>
   )
 }
