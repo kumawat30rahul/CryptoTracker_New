@@ -3,7 +3,6 @@ import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { Tooltip } from "@mui/material";
-// import { convertNumber } from "../../../functions/convertNumbers";
 import {  useNavigate } from "react-router-dom";
 import millify from 'millify'
 import {motion} from 'framer-motion'

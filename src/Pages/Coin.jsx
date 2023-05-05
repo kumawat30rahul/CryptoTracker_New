@@ -4,7 +4,6 @@ import Header from '../Components/Common/Header'
 import { coinData } from '../DataFetching/coinDataFetch'
 import { getCoinPrices } from '../DataFetching/coinPricesFetching'
 import { settingChartData } from '../DataFetching/chartData/settingChartData'
-import { coinObject } from '../DataFetching/chartData/convertObject'
 import List from '../Components/Dashboard/List'
 import CoinInfo from '../Components/Coin/CoinInfo'
 import SelectDays from '../Components/Coin/SelectDays'
@@ -32,7 +31,17 @@ function Coin() {
         const Data = await coinData(id)
         console.log(Data);
         if (Data) {
-            coinObject(setCoin_Data, Data)
+            setCoin_Data({
+                id: Data.id,
+                name: Data.name,
+                symbol: Data.symbol,
+                image: Data.image.large,
+                desc: Data.description.en,
+                price_change_percentage_24h: Data.market_data.price_change_percentage_24h,
+                total_volume: Data.market_data.total_volume.usd,
+                current_price: Data.market_data.current_price.usd,
+                market_cap: Data.market_data.market_cap.usd,
+            })
             const prices = await getCoinPrices(id, days, priceType);
             if (prices.length > 0) {
                 settingChartData(setChartData, prices)

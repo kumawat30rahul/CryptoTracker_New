@@ -9,7 +9,6 @@ import {settingChartData} from '../DataFetching/chartData/settingChartData'
 import CoinInfo from '../Components/Coin/CoinInfo'
 import LineChart from "../Components/Coin/LineChart";
 import List from '../Components/Dashboard/List'
-import {coinObject} from '../DataFetching/chartData/convertObject'
 import Loader from '../Components/Common/Loader'
 
 function Compare() {
@@ -24,15 +23,19 @@ function Compare() {
 
     async function handleDaysChange(event) {
         setDays(event.target.value);
-        const prices1 = await getCoinPrices(crypto1, event.target.value, priceType);
-        const prices2 = await getCoinPrices(crypto2, event.target.value, priceType);
+        const [prices1, prices2] = await Promise.all([
+          getCoinPrices(crypto1, event.target.value, priceType),
+          getCoinPrices(crypto2, event.target.value, priceType)
+        ]);
         settingChartData(setChartData, prices1, prices2);
       }
     
       const handlePriceTypeChange = async (event, newType) => {
         setPriceType(newType);
-        const prices1 = await getCoinPrices(crypto1, days, newType);
-        const prices2 = await getCoinPrices(crypto2, days, newType);
+        const [prices1, prices2] = await Promise.all([
+          getCoinPrices(crypto1, days, newType),
+          getCoinPrices(crypto2, days, newType)
+        ]);
         settingChartData(setChartData, prices1, prices2);
       };
 
@@ -45,11 +48,33 @@ function Compare() {
         const data1 = await coinData(crypto1);
         if (data1) {
           const data2 = await coinData(crypto2);
-          coinObject(setCrypto1Data, data1);
+          setCrypto1Data({
+            id: data1.id,
+            name: data1.name,
+            symbol: data1.symbol,
+            image: data1.image.large,
+            desc: data1.description.en,
+            price_change_percentage_24h: data1.market_data.price_change_percentage_24h,
+            total_volume: data1.market_data.total_volume.usd,
+            current_price: data1.market_data.current_price.usd,
+            market_cap: data1.market_data.market_cap.usd,
+        })
           if (data2) {
-            coinObject(setCrypto2Data, data2);
-            const prices1 = await getCoinPrices(crypto1, days, priceType);
-            const prices2 = await getCoinPrices(crypto2, days, priceType);
+            setCrypto2Data({
+              id: data2.id,
+              name: data2.name,
+              symbol: data2.symbol,
+              image: data2.image.large,
+              desc: data2.description.en,
+              price_change_percentage_24h: data2.market_data.price_change_percentage_24h,
+              total_volume: data2.market_data.total_volume.usd,
+              current_price: data2.market_data.current_price.usd,
+              market_cap: data2.market_data.market_cap.usd,
+          })
+            const [prices1, prices2] = await Promise.all([
+              getCoinPrices(crypto1, days, priceType),
+              getCoinPrices(crypto2, days, priceType)
+            ]);
             settingChartData(setChartData, prices1, prices2);
             setIsLoading(false);
           }
@@ -60,17 +85,41 @@ function Compare() {
         if (isCoin2) {
           setCrypto2(event.target.value);
           const data = await coinData(event.target.value);
-          coinObject(setCrypto2Data, data);
-          const prices1 = await getCoinPrices(crypto1, days, priceType);
-          const prices2 = await getCoinPrices(crypto2, days, priceType);
+          setCrypto2Data({
+            id: data.id,
+            name: data.name,
+            symbol: data.symbol,
+            image: data.image.large,
+            desc: data.description.en,
+            price_change_percentage_24h: data.market_data.price_change_percentage_24h,
+            total_volume: data.market_data.total_volume.usd,
+            current_price: data.market_data.current_price.usd,
+            market_cap: data.market_data.market_cap.usd,
+        })
+          const [prices1, prices2] = await Promise.all([
+            getCoinPrices(crypto1, days, priceType),
+            getCoinPrices(crypto2, days, priceType)
+          ]);
           if (prices1.length > 0 && prices2.length > 0) {
           }
         } else {
           setCrypto1(event.target.value);
           const data = await coinData(event.target.value);
-          coinObject(setCrypto1Data, data);
-          const prices1 = await getCoinPrices(crypto1, days, priceType);
-          const prices2 = await getCoinPrices(crypto2, days, priceType);
+          setCrypto1Data({
+            id: data.id,
+            name: data.name,
+            symbol: data.symbol,
+            image: data.image.large,
+            desc: data.description.en,
+            price_change_percentage_24h: data.market_data.price_change_percentage_24h,
+            total_volume: data.market_data.total_volume.usd,
+            current_price: data.market_data.current_price.usd,
+            market_cap: data.market_data.market_cap.usd,
+        })
+          const [prices1, prices2] = await Promise.all([
+            getCoinPrices(crypto1, days, priceType),
+            getCoinPrices(crypto2, days, priceType)
+          ]);
           if (prices1.length > 0 && prices2.length > 0) {
           }
         }

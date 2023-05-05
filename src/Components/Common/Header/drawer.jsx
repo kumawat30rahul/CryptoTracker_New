@@ -20,7 +20,7 @@ export default function Sidebar(){
                     <Link to="/compare" className="router_link">
                         <p className="link">Compare</p>
                     </Link>
-                    <Link to="/watchlist">
+                    <Link to="/watchlist" className="router_link">
                         <p className="link">Watchlist</p>
                     </Link>
                     <Link to="/dashboard" className="router_link">
