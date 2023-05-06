@@ -5,6 +5,7 @@ import {motion} from 'framer-motion'
 import iphone from '../../../Assets/iphone.png'
 import gradient from '../../../Assets/gradient.png'
 import { Link } from 'react-router-dom'
+import { RWebShare } from "react-web-share";
 
 function Maincomponent() {
   return (
@@ -45,7 +46,16 @@ function Maincomponent() {
 
           <Button text={"Dashboard"} />
         </Link>
-          <Button text={"Share"} outlined={true} />
+        <RWebShare
+        data={{
+          text: "Cryptocurrency Tracker",
+          url: "https://web.whatsapp.com/",
+          title: "CryptoCureencey Tracker",
+        }}
+        onClick={() => console.log("shared successfully!")}
+      >
+            <Button text={"Share"} outlined={true} />
+      </RWebShare>
         </motion.div>
       </div>
       <div className='right_info'>
