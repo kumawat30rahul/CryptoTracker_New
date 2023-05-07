@@ -13,26 +13,26 @@ function Header() {
   return (
     <div className={`navbar ${darkMode ? 'dark' : 'light'}`}>
       <h1 className="logo">
-      <a href="/" className={`router_link ${darkMode ? 'dark' : 'light'}`}>
+      <Link to="/" className={`router_link ${darkMode ? 'dark' : 'light'}`}>
         CryptoTracker<span style={{ color: "var(--blue)" }}>.</span>
-      </a>
+      </Link>
       </h1>
       <div className="nav_links">
         <SwitchComponent />
-        <a href="/" className="router_link">
+        <Link to="/" className="router_link">
           <p className="link">Home</p>
-        </a>
-        <a href="/compare" className="router_link">
+        </Link>
+        <Link to="/compare" className="router_link">
           <p className="link">Compare</p>
-        </a>
-        <a href="/watchlist" className="router_link">
+        </Link>
+        <Link to="/watchlist" className="router_link">
           <p className="link">Watchlist</p>
-        </a>
-        <a href="/dashboard" className="router_link">
+        </Link>
+        <Link to="/dashboard" className="router_link">
           <Button
             text={"Dashboard"}
           />
-        </a>
+        </Link>
       </div>
       <div className="mobile-sidebar">
         <Sidebar />
