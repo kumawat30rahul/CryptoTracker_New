@@ -12,7 +12,7 @@ import Header from './Components/Common/Header'
 
 export const DarkModeProvider = createContext()
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   
   return (
     <DarkModeProvider.Provider value={{darkMode,setDarkMode}}>

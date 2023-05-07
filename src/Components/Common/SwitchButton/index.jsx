@@ -12,7 +12,7 @@ function SwitchComponent() {
     setDarkMode(!darkMode);
   };
   return (
-    <Switch {...label} onChange={handleSwitchChange}/>
+    <Switch {...label} onChange={handleSwitchChange} defaultChecked />
   )
 }
 
