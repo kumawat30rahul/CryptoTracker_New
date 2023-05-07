@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../Components/Common/Header'
 import { coinData } from '../DataFetching/coinDataFetch'
@@ -10,6 +10,7 @@ import SelectDays from '../Components/Coin/SelectDays'
 import TogglePriceType from '../Components/Coin/Pricetype'
 import LineChart from '../Components/Coin/LineChart'
 import Loader from '../Components/Common/Loader'
+import { DarkModeProvider } from '../App'
 
 function Coin() {
     const [isLoading, setIsLoading] = useState(true);
@@ -17,8 +18,9 @@ function Coin() {
     const [days, setDays] = useState(60);
     const [chartData, setChartData] = useState({});
     const [priceType, setPriceType] = useState("prices");
-
     const { id } = useParams()
+    const { darkMode } = useContext(DarkModeProvider)
+
     useEffect(() => {
         if (id) {
             getData();
@@ -66,15 +68,14 @@ function Coin() {
     };
     return (
         <div>
-            <Header />
                     {isLoading ? (
                         <Loader />
                     ) : (
                         <>
-                <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
+                <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`} style={{ padding: "0rem 1rem" }}>
                     {coin_Data && <List coin={coin_Data} className="coin_list" />}
                 </div>
-                <div className="grey-wrapper">
+                <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`}>
                     <SelectDays days={days} handleDaysChange={handleDaysChange} />
                     <TogglePriceType
                     priceType={priceType}

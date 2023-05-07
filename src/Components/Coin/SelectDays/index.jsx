@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 // import "./styles.css";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { DarkModeProvider } from "../../../App";
 
 export default function SelectDays({ days, handleDaysChange, noPTag }) {
+  const {darkMode} = useContext(DarkModeProvider)
   return (
     <div className="select-days">
       {!noPTag && <p>Price Change In</p>}
       <Select
         sx={{
           height: "2.5rem",
-          color: "var(--white)",
+          color: `${darkMode} ? var(--white) : var(--black)`,
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "var(--white)",
+            borderColor: `${darkMode} ? var(--white) : var(--black)`,
           },
           "& .MuiSvgIcon-root": {
-            color: "var(--white)",
+            color: `${darkMode} ? var(--white) : var(--black)`,
           },
           "&:hover": {
             "&& fieldset": {

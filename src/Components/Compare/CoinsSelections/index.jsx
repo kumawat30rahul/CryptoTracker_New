@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { coinsFetch } from "../../../DataFetching/coinsFetch";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import "./styles.css";
+import { DarkModeProvider } from "../../../App";
 
 function SelectCoins({ crypto1, crypto2, handleCoinChange }) {
   const [allCoins, setAllCoins] = useState([]);
+  const {darkMode} = useContext(DarkModeProvider)
 
   const styles = {
     height: "2.5rem",
-    color: "var(--white)",
+    color: `${darkMode} ? var(--white) : var(--black)`,
     "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "var(--white)",
+      borderColor: `${darkMode} ? var(--white) : var(--black)`,
     },
     "& .MuiSvgIcon-root": {
-      color: "var(--white)",
+      color: `${darkMode} ? var(--white) : var(--black)`,
     },
     "&:hover": {
       "&& fieldset": {

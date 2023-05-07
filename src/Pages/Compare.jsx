@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../Components/Common/Header'
 import SelectCoins from '../Components/Compare/CoinsSelections'
 import TogglePriceType from '../Components/Coin/Pricetype'
@@ -10,6 +10,7 @@ import CoinInfo from '../Components/Coin/CoinInfo'
 import LineChart from "../Components/Coin/LineChart";
 import List from '../Components/Dashboard/List'
 import Loader from '../Components/Common/Loader'
+import { DarkModeProvider } from '../App'
 
 function Compare() {
     const [crypto1, setCrypto1] = useState("bitcoin");
@@ -20,6 +21,8 @@ function Compare() {
     const [days, setDays] = useState(30);
     const [priceType, setPriceType] = useState("prices");
     const [chartData, setChartData] = useState({});
+    const {darkMode} = useContext(DarkModeProvider)
+
 
     async function handleDaysChange(event) {
         setDays(event.target.value);
@@ -129,7 +132,6 @@ function Compare() {
       },[crypto2Data,crypto1Data])
   return (
     <div>
-      <Header />
               {isLoading ? (
                 <Loader />
               ) : (
@@ -146,17 +148,17 @@ function Compare() {
               noPTag={true}
             />
           </div>
-          <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
+          <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`} style={{ padding: "0rem 1rem" }}>
            {crypto1 && crypto1Data && 
              <List coin={crypto1Data}/>
            }
           </div>
-          <div className="grey-wrapper" style={{ padding: "0rem 1rem" }}>
+          <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`} style={{ padding: "0rem 1rem" }}>
            {crypto2 && crypto2Data && 
              <List coin={crypto2Data} delay={2}/>
             }
           </div>
-          <div className="grey-wrapper">
+          <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`}>
             <TogglePriceType
               priceType={priceType}
               handlePriceTypeChange={handlePriceTypeChange}

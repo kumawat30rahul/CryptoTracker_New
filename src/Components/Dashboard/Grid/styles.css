@@ -1,12 +1,21 @@
 
 .grid-container {
     width: 300px;
-    background-color: var(--darkgrey);
-    border: 2px solid var(--darkgrey);
     border-radius: 0.75rem;
     position: relative;
   }
   
+  .dark-grid-bg{
+    background-color: var(--darkgrey) !important;
+    border: 2px solid var(--darkgrey);
+
+  }
+  .light-grid-bg{
+    background-color: var(--fadded-grey) !important;
+    border: 2px solid var(--fadded-grey);
+    color: var(--black);
+
+  }
   .grid-container:hover {
     border-color: var(--green);
     transition: all 0.3s;
@@ -67,12 +76,18 @@
   }
   
   .coin-symbol {
-    color: var(--white);
     text-transform: uppercase;
     font-weight: 600;
     font-size: 1.2rem;
     margin: 0;
   }
+  .coin-symbol-dark{
+    color: var(--white);
+  }
+  .coin-symbol-light{
+    color: var(--darkgrey);
+  }
+
   .coin-name {
     color: var(--grey);
     text-transform: capitalize;
@@ -147,6 +162,18 @@
     margin: 5px 0 5px 0;
   }
 
+  .dashboard-div-wrapper{
+    min-height: 100vh;
+    width: 100%;
+    padding-bottom: 5px;
+  }
+
+.dashboard-div-dark{
+  background-color: var(--black);
+}
+.dashboard-div-light{
+  background-color: var(--white);
+}
   @media (max-width: 425px){
     .price-chip{
       padding: 5px;

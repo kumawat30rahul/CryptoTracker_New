@@ -15,7 +15,6 @@ function WatchList({coinData}) {
 
   return (
     <div className='watch-list'>
-    <Header />
     {coinData &&
       <CoinNavgationTabs coins={allCoins} variant='fullWidth'/>
     }

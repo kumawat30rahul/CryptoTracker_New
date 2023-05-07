@@ -9,7 +9,6 @@
     gap: 1.5rem;
     padding: 1rem 3rem;
     color: var(--grey);
-    background-color: var(--darkgrey);
     width: 80%;
     margin: 0 0 1rem 0;
     margin-left: auto;
@@ -19,7 +18,7 @@
   }
   
   .search_div input {
-    background-color: var(--darkgrey);
+    background-color: transparent;
     width: 100%;
     font-family: "Inter";
     font-size: 1.2rem;
@@ -31,6 +30,14 @@
     outline: none;
   }
 
+  .light-bg-search{
+    background-color: var(--fadded-grey) !important;
+  }
+  .dark-bg-search{
+    background-color: var(--darkgrey) !important;
+  }
+
+  
   @media (max-width: 425px){
     .search_div{
         width: 100%;

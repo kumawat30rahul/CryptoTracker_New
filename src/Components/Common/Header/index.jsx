@@ -1,32 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import "./style.css";
 import Sidebar from "./drawer";
+import SwitchComponent from "../SwitchButton";
+import { DarkModeProvider } from "../../../App";
 
 function Header() {
+
+  const {darkMode} = useContext(DarkModeProvider)
+
   return (
-    <div className="navbar">
+    <div className={`navbar ${darkMode ? 'dark' : 'light'}`}>
       <h1 className="logo">
-      <Link to="/" className="router_link">
+      <a href="/" className={`router_link ${darkMode ? 'dark' : 'light'}`}>
         CryptoTracker<span style={{ color: "var(--blue)" }}>.</span>
-      </Link>
+      </a>
       </h1>
       <div className="nav_links">
-        <Link to="/" className="router_link">
+        <SwitchComponent />
+        <a href="/" className="router_link">
           <p className="link">Home</p>
-        </Link>
-        <Link to="/compare" className="router_link">
+        </a>
+        <a href="/compare" className="router_link">
           <p className="link">Compare</p>
-        </Link>
-        <Link to="/watchlist" className="router_link">
+        </a>
+        <a href="/watchlist" className="router_link">
           <p className="link">Watchlist</p>
-        </Link>
-        <Link to="/dashboard" className="router_link">
+        </a>
+        <a href="/dashboard" className="router_link">
           <Button
             text={"Dashboard"}
           />
-        </Link>
+        </a>
       </div>
       <div className="mobile-sidebar">
         <Sidebar />

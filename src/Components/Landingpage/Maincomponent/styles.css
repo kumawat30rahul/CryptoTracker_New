@@ -1,7 +1,9 @@
-.trackcrypto_heading{
-    color: white;
+.trackcrypto_heading-dark{
+    color: white !important;
 }
-
+.trackcrypto_heading-light{
+    color: black !important;
+}
 .main_info_flex{
     display: flex;
     justify-content: space-between;
@@ -19,9 +21,14 @@
   line-height: 8rem;
 
 }
-.trackcrypto_heading:hover{
+.trackcrypto_heading-dark:hover{
     text-shadow: 1px 1px 0 var(--white), -1px -1px 0 var(--white), 1px -1px 0 var(--white), -1px 1px 0 var(--white);
-    color: var(--black);
+    color: var(--black) !important;
+    transition: all 0.3s;
+}
+.trackcrypto_heading-light:hover{
+    text-shadow: 2px 2px 0 var(--black), -2px -2px 0 var(--black), 2px -2px 0 var(--black), -2px 2px 0 var(--white);
+    color: var(--white) !important;
     transition: all 0.3s;
 }
 

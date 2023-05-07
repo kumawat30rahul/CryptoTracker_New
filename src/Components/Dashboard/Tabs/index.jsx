@@ -9,17 +9,19 @@ import Grid from '../Grid'
 import './styles.css'
 import List from '../List';
 import Loader from '../../Common/Loader';
-
+import { DarkModeProvider } from "../../../App";
+import { useContext } from 'react';
 
 export default function CoinNavgationTabs({coins,variant,isLoading}) {
   const [value, setValue] = React.useState('grid');
+  const {darkMode} = useContext(DarkModeProvider)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
    const style = {
-    color: "var(--white)",
+    color: `${darkMode ? 'var(--white)' : 'var(--black)'}`,
     // width: "20px",
     fontSize: "1.2rem",
     fontWeight: 600,

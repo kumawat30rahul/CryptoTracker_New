@@ -1,13 +1,16 @@
 .navbar{
     position: sticky;
     top: 0;
+    left: 0;
+    right: 0;
     padding: 1.5rem 3rem;
-    background-color: var(--black);
+    /* background-color: var(--black); */
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 999;
 }
+
 .router_link{
     text-decoration: none;
     color: white;
@@ -51,9 +54,18 @@
     }
   
     .drawer-div {
-      width: 35vw;
-      background-color: var(--black);
+      width: 40vw;
       height: 100vh;
       padding: 1.5rem;
+      box-shadow: 1px -1px 10px white;
+    }
+
+    .drawer-div-dark{
+      background-color: var(--darkgrey);
+
+    }
+    .drawer-div-light{
+      background-color: var(--white);
+
     }
   }

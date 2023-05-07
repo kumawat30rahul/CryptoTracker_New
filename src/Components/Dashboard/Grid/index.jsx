@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
@@ -9,12 +9,13 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useDispatch } from 'react-redux';
 import {whishListHandler} from '../../../redux/app/actions'
+import { DarkModeProvider } from "../../../App";
 
 function Grid({coin,delay}) {
   const [saved,setSaved] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const {darkMode} = useContext(DarkModeProvider)
   const savingHandler = () => {
     setSaved(!saved);
   }
@@ -49,7 +50,7 @@ function Grid({coin,delay}) {
       whileInView={{opacity:1,y:0}}
       viewport={{once: true}}
       transition={{duration:0.5, delay: 0.25 + delay *0.1}}
-      className={`grid-container ${
+      className={`grid-container ${darkMode ? 'dark-grid-bg': 'light-grid-bg'} ${
         coin.price_change_percentage_24h < 0 && "grid-container-red"
       }`}
       onClick={handleNavigation}
@@ -65,7 +66,7 @@ function Grid({coin,delay}) {
         <div className="info-flex">
           <img src={coin.image} className="coin-logo" />
           <div className="name-col">
-            <p className="coin-symbol">{coin.symbol}</p>
+            <p className={`coin-symbol ${darkMode ? 'coin-symbol-dark' : 'coin-symbol-light'}`}>{coin.symbol}</p>
             <p className="coin-name">{coin.name}</p>
           </div>
         </div>

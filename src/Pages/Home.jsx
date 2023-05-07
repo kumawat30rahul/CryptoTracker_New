@@ -35,7 +35,6 @@ function Home() {
   return (
     <div className="Home">
       <div style={circleStyle}></div>
-        <Header />
         <Maincomponent />
         {/* <motion.h1
           className="currency_heading"

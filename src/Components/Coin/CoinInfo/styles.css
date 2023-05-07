@@ -8,11 +8,18 @@
   }
   
 .grey-wrapper{
-    background-color: var(--darkgrey);
     margin: 1rem;
     border-radius: 10px;
     padding: 1rem;
 }
+
+.grey-wrapper-dark{
+  background-color: var(--darkgrey) !important;
+}
+.grey-wrapper-light{
+  background-color: var(--fadded-grey) !important;
+}
+
 .coin_list{
     padding: 1rem;
 }

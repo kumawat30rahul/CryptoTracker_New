@@ -10,14 +10,15 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { whishListHandler } from "../../../redux/app/actions";
 import { useDispatch } from "react-redux";
-
+import { DarkModeProvider } from "../../../App";
+import { useContext } from "react";
 
 
 function List({ coin , delay}) {
   const [saved,setSaved] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const {darkMode} = useContext(DarkModeProvider)
   const savingHandler = () => {
     setSaved(!saved);
   }
@@ -49,7 +50,7 @@ function List({ coin , delay}) {
       whileInView={{opacity:1,x:0}}
       viewport={{once: true}}
       transition={{duration:0.5, delay: 0.25 + delay *0.1}}
-      className="list-row"
+      className={`list-row ${darkMode ? 'list-row-dark' : ''}`}
       onClick={handleNavigation}
       >
         <Tooltip title={coin.name + " logo"}>

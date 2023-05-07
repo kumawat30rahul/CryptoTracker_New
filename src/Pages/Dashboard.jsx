@@ -1,9 +1,10 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useContext} from 'react'
 import Search from '../Components/Dashboard/Search';
 import Header from '../Components/Common/Header';
 import CoinNavgationTabs from '../Components/Dashboard/Tabs';
 import {coinsFetch} from '../DataFetching/coinsFetch'
 import PaginationButtons from '../Components/Dashboard/Pagination';
+import { DarkModeProvider } from '../App';
 
 function Dashboard() {
   const [coins, setCoins] = useState([]);
@@ -12,6 +13,7 @@ function Dashboard() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const {darkMode} = useContext(DarkModeProvider)
 
   const handlePageChange=(event,value)=>{
     setPage(value);
@@ -45,8 +47,7 @@ function Dashboard() {
   }
 
   return (
-    <div>
-    <Header />
+    <div className={`dashboard-div-wrapper ${darkMode ? 'dashboard-div-dark' : 'dashboard-div-light' }`}>
       <Search search={search} onSearchChange={onSearchChange} />
         <CoinNavgationTabs coins={search ? filteredCoins : paginatedCoins} isLoading={isLoading}/>
         {!isLoading && 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '../../Common/Button'
 import './styles.css'
 import {motion} from 'framer-motion'
@@ -6,13 +6,15 @@ import iphone from '../../../Assets/iphone.png'
 import gradient from '../../../Assets/gradient.png'
 import { Link } from 'react-router-dom'
 import { RWebShare } from "react-web-share";
+import { DarkModeProvider } from '../../../App'
 
 function Maincomponent() {
+  const {darkMode} = useContext(DarkModeProvider)
   return (
     <div className='main_info_flex'>
       <div className='left_info'>
       <motion.h1
-          className="trackcrypto_heading"
+          className={`trackcrypto_heading ${darkMode ? 'trackcrypto_heading-dark' : 'trackcrypto_heading-light'}`}
           initial={{ opacity: 0,  y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

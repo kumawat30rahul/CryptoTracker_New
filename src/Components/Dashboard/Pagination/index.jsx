@@ -1,9 +1,11 @@
 import * as React from 'react';
 import Pagination from '@mui/material/Pagination';
 import './styles.css'
+import { useContext } from 'react';
+import { DarkModeProvider } from '../../../App';
 
 export default function PaginationButtons({page,handlePageChange}) {
-
+    const {darkMode} = useContext(DarkModeProvider)
     return (
         <div className='pagination'>
             <Pagination 
@@ -13,7 +15,7 @@ export default function PaginationButtons({page,handlePageChange}) {
                 page={page}
                 onChange={(event,value)=>handlePageChange(event,value)}
                 sx={{
-                color: "var(--white)",
+                color: `${darkMode ? 'var(--white)' : 'var(--black)' }`,
                 "& .Mui-selected":{
                     backgroundColor:"var(--blue) !important",
                     color: "white",
@@ -23,7 +25,7 @@ export default function PaginationButtons({page,handlePageChange}) {
                     border: "0px solid var(--grey) !important",
                 },
                 "& .MuiPaginationItem-text": {
-                    color: "var(--white)",
+                    color: `${darkMode ? 'var(--white)' : 'var(--black)' }`,
                     border: "1px solid var(--grey)",
                 },
                 "@media (max-width: 375px)": {
