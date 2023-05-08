@@ -148,12 +148,12 @@ function Compare() {
               noPTag={true}
             />
           </div>
-          <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`} style={{ padding: "0rem 1rem" }}>
+          <div className={`grey-wrapper `} style={{ padding: "0rem 1rem" }}>
            {crypto1 && crypto1Data && 
              <List coin={crypto1Data}/>
            }
           </div>
-          <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`} style={{ padding: "0rem 1rem" }}>
+          <div className={`grey-wrapper `} style={{ padding: "0rem 1rem" }}>
            {crypto2 && crypto2Data && 
              <List coin={crypto2Data} delay={2}/>
             }
