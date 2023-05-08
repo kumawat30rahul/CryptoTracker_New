@@ -72,7 +72,7 @@ function Coin() {
                         <Loader />
                     ) : (
                         <>
-                <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`} style={{ padding: "0rem 1rem" }}>
+                <div className={`grey-wrapper`} style={{ padding: "0rem 1rem" }}>
                     {coin_Data && <List coin={coin_Data} className="coin_list" />}
                 </div>
                 <div className={`grey-wrapper ${darkMode ? 'grey-wrapper-dark' : 'grey-wrapper-light'}`}>

@@ -14,7 +14,7 @@
 }
 
 .grey-wrapper-dark{
-  background-color: var(--darkgrey) !important;
+  background-color: var(--fadded-grey) !important;
 }
 .grey-wrapper-light{
   background-color: var(--fadded-grey) !important;
