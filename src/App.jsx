@@ -9,11 +9,22 @@ import WatchList from './Pages/WatchList'
 import store from './redux/Store/store'
 import { Provider } from 'react-redux'
 import Header from './Components/Common/Header'
+import { useEffect } from 'react'
 
 export const DarkModeProvider = createContext()
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-  
+
+  useEffect(()=>{
+    if(darkMode){
+      document.body.classList.remove('light')
+      document.body.classList.add('dark')
+    }else{
+      document.body.classList.remove('dark')
+      document.body.classList.add('light')
+    }
+  },[darkMode])
+
   return (
     <DarkModeProvider.Provider value={{darkMode,setDarkMode}}>
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>

@@ -118,9 +118,9 @@
         line-height: 4rem;
     }
     .iphone {
-        width: 70%;
+        width: 60%;
         height: auto !important;
-         left: -2.5rem;
+         left: -0.9rem;
     }
   
     .gradient {
@@ -138,6 +138,9 @@
 
 @media only screen and (max-width: 375px) {
 
+    .iphone {
+         left: -2.5rem;
+    }
     .description_p{
         font-size: 0.7rem;
     }
